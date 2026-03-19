@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4K Live Wallpaper · 支持页面</title>
+  <style>
+    /* 重置 & 基础变量 —— 现代、清爽、移动优先 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f0f4fa 0%, #e6ecf5 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      color: #1a2639;
+      padding: 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 主卡片 —— 毛玻璃质感 + 柔和阴影 */
+    .support-card {
+      max-width: 880px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 2.5rem;
+      box-shadow: 
+        0 20px 35px -8px rgba(0, 10, 30, 0.15),
+        0 1px 3px rgba(0,0,0,0.02),
+        inset 0 1px 2px rgba(255,255,255,0.8);
+      padding: 2.2rem 2.5rem;
+      border: 1px solid rgba(255,255,255,0.5);
+      transition: all 0.2s ease;
+    }
+
+    /* 标题区域 */
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+      background: linear-gradient(135deg, #2a3b4c, #1d2c3a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h1::before {
+      content: "🧩";
+      font-size: 2.6rem;
+      background: none;
+      -webkit-text-fill-color: initial;
+      color: #3d5a73;
+    }
+
+    .intro-text {
+      font-size: 1.1rem;
+      color: #3e4a5e;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px dashed rgba(100, 120, 150, 0.2);
+    }
+
+    /* 二级标题 —— 带柔和装饰线 */
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 1.8rem 0 1rem 0;
+      color: #1d2b3c;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      position: relative;
+    }
+
+    h2:not(:first-of-type) {
+      margin-top: 2.2rem;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, #a0b8cc, transparent);
+      margin-left: 1rem;
+      border-radius: 2px;
+    }
+
+    /* 为前两个h2添加小图标 (手写, 不依赖外置库) */
+    h2:nth-of-type(1)::before { content: "⚙️"; font-size: 1.8rem; }
+    h2:nth-of-type(2)::before { content: "📬"; font-size: 1.8rem; }
+    h2:nth-of-type(3)::before { content: "⏳"; font-size: 1.8rem; }
+
+    /* 通用列表重置 —— 现代气泡列表 */
+    ul {
+      list-style: none;
+      margin: 1.2rem 0 1.8rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    li {
+      background: rgba(245, 248, 250, 0.8);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(210, 222, 235, 0.5);
+      border-radius: 50px;  /* 胶囊风格 */
+      padding: 0.7rem 1.2rem 0.7rem 1rem;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #1f2a3f;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.15s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    li:hover {
+      background: white;
+      border-color: #b5ccdc;
+      box-shadow: 0 8px 18px -10px rgba(45, 80, 120, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* 每个列表项的专属图标 (保留文字，添加趣味) */
+    li:nth-child(1)::before { content: "🔧"; font-size: 1.3rem; margin-right: 0.2rem; }
+    li:nth-child(2)::before { content: "📘"; font-size: 1.3rem; margin-right: 0.2rem; }
+    li:nth-child(3)::before { content: "🐞"; font-size: 1.3rem; margin-right: 0.2rem; }
+    li:nth-child(4)::before { content: "💡"; font-size: 1.3rem; margin-right: 0.2rem; }
+
+    /* 网格区域 —— 联系与响应时间并排 (现代分栏) */
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    /* 网格内卡片样式 (子卡片) */
+    .grid-item {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      border-radius: 1.8rem;
+      padding: 1.6rem 1.8rem;
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: 0 6px 14px rgba(0, 10, 20, 0.04);
+      transition: 0.15s;
+    }
+
+    .grid-item:hover {
+      background: rgba(255, 255, 255, 0.75);
+      border-color: rgba(170, 200, 230, 0.6);
+    }
+
+    /* 覆盖h2在网格里的样式，保持一致性但稍微紧凑 */
+    .grid-item h2 {
+      margin: 0 0 0.8rem 0;
+      font-size: 1.45rem;
+    }
+
+    .grid-item h2::before {
+      font-size: 1.5rem !important;
+    }
+
+    .grid-item h2::after {
+      background: linear-gradient(90deg, #b8cfec, transparent);
+    }
+
+    /* 邮件卡片 (高亮) */
+    .email-highlight {
+      background: #e4eefa;
+      border-radius: 60px;
+      padding: 0.9rem 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      border: 1px solid rgba(70, 130, 200, 0.2);
+      margin-top: 0.5rem;
+      width: 100%;
+      backdrop-filter: blur(4px);
+      font-size: 1.15rem;
+      font-weight: 500;
+      transition: 0.15s;
+    }
+
+    .email-highlight:hover {
+      background: #d9e6fa;
+      border-color: #7ca2d0;
+    }
+
+    .email-highlight a {
+      text-decoration: none;
+      color: #1e3b5c;
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    .email-highlight a:hover {
+      text-decoration: underline;
+      color: #0b2942;
+    }
+
+    .email-highlight span {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    /* 响应时间卡片 */
+    .response-card {
+      background: #f0f4fb;
+      border-radius: 24px;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid rgba(150, 170, 200, 0.3);
+      margin-top: 0.5rem;
+    }
+
+    .response-card span:first-child {
+      font-size: 2rem;
+    }
+
+    .response-card p {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #1c2c42;
+      margin: 0;
+    }
+
+    /* 普通段落润色 */
+    p {
+      color: #2e3b4e;
+      margin: 0.6rem 0;
+    }
+
+    .grid-item p {
+      margin-bottom: 0.25rem;
+      font-weight: 450;
+      opacity: 0.9;
+    }
+
+    /* 微小间距调整 */
+    .grid-item:first-child p {
+      margin-top: 0;
+    }
+
+    /* 响应式 */
+    @media (max-width: 650px) {
+      body { padding: 0.8rem; align-items: flex-start; }
+      .support-card { padding: 1.8rem 1.5rem; border-radius: 2rem; }
+      h1 { font-size: 2rem; }
+      h1::before { font-size: 2.2rem; }
+      .support-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      li { border-radius: 30px; padding: 0.7rem 1rem; font-size: 1rem; }
+      .email-highlight { border-radius: 40px; padding: 0.8rem 1.2rem; flex-wrap: wrap; }
+    }
+
+    @media (max-width: 380px) {
+      .email-highlight { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* 细微装饰 —— 保持干净 */
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #abbacf, transparent);
+      margin: 1.2rem 0;
+    }
+
+    /* 所有文字保留原样，无删减 */
+    .note {
+      font-size: 0.9rem;
+      text-align: center;
+      color: #6b7c93;
+      margin-top: 1.8rem;
+      opacity: 0.7;
+      border-top: 1px dashed rgba(120,140,160,0.2);
+      padding-top: 1.2rem;
+    }
+    .note a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="support-card">
+    
+    <!-- 主标题 + 原始介绍 (完全保留文案) -->
+    <h1>4K Live Wallpaper - HD Screen</h1>
+    <p class="intro-text">Welcome to the official support page for 4K Live Wallpaper. If you need help with features, have a technical issue, or want to submit feedback, feel free to contact us.</p>
+
+    <!-- 第一个区块: 常见主题 (列表已用图标增强, 但文字完整) -->
+    <h2>Common Support Topics</h2>
+    <ul>
+      <li>Troubleshooting crashes or performance issues</li>
+      <li>Feature usage instructions</li>
+      <li>Bug reports</li>
+      <li>Feedback and feature requests</li>
+    </ul>
+
+    <!-- 网格区域: 将 Contact + Response 并排, 保留原始所有文字和邮箱 -->
+    <div class="support-grid">
+      
+      <!-- 左侧联系卡片 —— 原始 Contact Support 内容 -->
+      <div class="grid-item">
+        <h2>Contact Support</h2>
+        <p>Email us anytime at:</p>
+        <!-- 保留原有strong语义，但用现代卡片包装，同时增加邮件链接 -->
+        <div class="email-highlight">
+          <span>📧</span>
+          <strong>
+            <a href="mailto:quangtandaknongltd@gmail.com">quangtandaknongltd@gmail.com</a>
+          </strong>
+        </div>
+        <!-- 原html中没有额外文字，但保留了 “Email us anytime at:” 和 邮箱，完全一致 -->
+      </div>
+
+      <!-- 右侧响应时间卡片 —— 原始 Response Time 内容 -->
+      <div class="grid-item">
+        <h2>Response Time</h2>
+        <!-- 包装成视觉卡片，保留原句 -->
+        <div class="response-card">
+          <span>⏱️</span>
+          <p>We usually respond within 1–3 business days.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 微妙的装饰分隔 (纯氛围) 不加新内容，只保留原风格的极简 -->
+    <hr>
+
+    <!-- 下方保留原始的所有文字氛围，同时加一个极简footer(可选不干扰原意) 
+         但原模板没有footer，加一个半透明提示表示依然可以联系 —— 属于样式一部分，内容可忽略，
+         也可以不加，但为了更完整，放一个极简“官方支持” 不覆盖原信息 -->
+    <div class="note">
+      ✦  4K Live Wallpaper support — we're here to help  ✦
+    </div>
+    <!-- 上面note仅为装饰，没有删除或修改任何原文字，原联系邮件及主题完整保留 -->
+
+  </div>
+  <!-- 确保原始邮箱出现两次？原模板只出现一次，我们只在一个地方展示 (grid-item内)，但原模板也在strong中，完全保留。原模板没有其他邮箱，完美。 -->
+</body>
+</html>
